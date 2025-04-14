@@ -95,7 +95,7 @@ int main()
 
 			if (ev.type == SDL_MOUSEMOTION)
 			{
-				camera.processMouseMovement(ev.motion.xrel, -ev.motion.yrel);
+				camera.processMouseMovement((float)ev.motion.xrel, (float)-ev.motion.yrel);
 			}
 		}
 
