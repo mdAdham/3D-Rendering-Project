@@ -3,8 +3,11 @@
 #include "Renderer/Camera.hpp"
 #include "Renderer/Shapes/Triangle.hpp"
 
+#include "Renderer/Renderer.hpp"
+
 using namespace std;
 
+/*
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 
@@ -17,7 +20,7 @@ using namespace std;
 	-0.5f,  0.5f, -0.5f,
 	-0.5f, -0.5f, -0.5f
 };
-*/
+
 
 float verticies[] =
 {
@@ -70,15 +73,18 @@ int main()
 
 #pragma region CODE
 
-	Camera camera(vec3(0.0f, 1.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), -90.f, 0.0f);
+	Camera camera(vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), -90.f, 0.0f);
 	float lastFrame = 0.0f;
 
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 #pragma endregion
 	Triangle tri(vec3(0.0f, 0.0f, 0.0f)), tri2(vec3(2.0f, 0.0f, 0.0f));
 
-	glFrontFace(GL_FRONT);
-	glCullFace(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LINE_SMOOTH);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	//main loop
 	bool running = true;
 	while (running)
@@ -115,11 +121,11 @@ int main()
 			camera.processKeyboard(6, deltaTime);
 
 		//tri.Update();
-		tri2.Update();
+		tri2.Update(deltaTime);
 #pragma endregion
 
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 
 		shader.use();
 #pragma region RENDERING
@@ -145,4 +151,11 @@ int main()
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	return 0;
+}
+*/
+
+int main()
+{
+	Renderer renderer;
+	renderer.Run();
 }

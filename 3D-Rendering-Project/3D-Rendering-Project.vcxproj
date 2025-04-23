@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>vendor/Glad/include;vendor/SDL2/include;vendor/glm;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor/Glad/include;vendor/SDL2/include;vendor/glm;src;vendor/stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>vendor/Glad/include;vendor/SDL2/include;vendor/glm;src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor/Glad/include;vendor/SDL2/include;vendor/glm;src;vendor/stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -146,23 +146,42 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Renderer\Camera.cpp" />
     <ClCompile Include="src\Renderer\Mesh.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Renderer\Shapes\Cube.cpp" />
+    <ClCompile Include="src\Renderer\Shapes\Grid.cpp" />
+    <ClCompile Include="src\Renderer\Shapes\Plane.cpp" />
+    <ClCompile Include="src\Renderer\Shapes\Square.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Triangle.cpp" />
+    <ClCompile Include="src\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Renderer\VertexArray.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Base.h" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="src\Renderer\Buffer.hpp" />
     <ClInclude Include="src\Renderer\Camera.hpp" />
+    <ClInclude Include="src\Renderer\Shapes\Cube.hpp" />
+    <ClInclude Include="src\Renderer\Texture.hpp" />
+    <ClInclude Include="src\Renderer\VertexArray.hpp" />
     <ClInclude Include="src\Renderer\Mesh.hpp" />
     <ClInclude Include="src\Renderer\Renderer.hpp" />
     <ClInclude Include="src\Renderer\Shader.hpp" />
+    <ClInclude Include="src\Renderer\Shapes\Grid.hpp" />
+    <ClInclude Include="src\Renderer\Shapes\Plane.hpp" />
+    <ClInclude Include="src\Renderer\Shapes\Square.hpp" />
     <ClInclude Include="src\Renderer\Shapes\Triangle.hpp" />
+    <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\basic.frag" />
     <None Include="assets\shaders\basic.vert" />
+    <None Include="assets\shaders\Texture.frag" />
+    <None Include="assets\shaders\Texture.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
