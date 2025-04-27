@@ -18,6 +18,9 @@ public:
 	unsigned int getID() const;
 
 	void setmat4(const string& name, const mat4& mat) const;
+	void setvec3(const string& name, const vec3& vec) const;
+	void setfloat(const string& name, const float& val) const;
+	void setint(const string& name, const int& val) const;
 
 	unsigned int shaderID;
 private:

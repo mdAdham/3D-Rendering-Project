@@ -10,6 +10,7 @@ public:
 
 	void Load(const std::filesystem::path& path);
 	void Bind();
+	void Bind(unsigned int slot);
 	void Unbind();
 private:
 	unsigned int m_RendererId = 0;

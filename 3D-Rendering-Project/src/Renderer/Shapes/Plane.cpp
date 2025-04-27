@@ -3,10 +3,10 @@
 
 static float vertices[] =
 {
-	-0.5f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-	-0.5f, 0.0f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-	 0.5f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-	 0.5f, 0.0f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f
+	-0.5f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+	-0.5f, 0.0f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+	 0.5f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+	 0.5f, 0.0f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f
 };
 
 static unsigned int indicies[] =
@@ -68,4 +68,5 @@ void Plane::Render(SDL_Window* window, const mat4& view, const mat4& proj)
 	vao->Bind();
 	uint32_t count = ebo->GetCount() ? ebo->GetCount() : vao->GetIndexBuffer()->GetCount();
 	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
+	tex.Unbind();
 }

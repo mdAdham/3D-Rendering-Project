@@ -63,6 +63,21 @@ void Shader::setmat4(const string& name, const mat4& mat) const
 	glUniformMatrix4fv(glGetUniformLocation(shaderID, name.c_str()), 1, GL_FALSE, value_ptr(mat));
 }
 
+void Shader::setvec3(const string& name, const vec3& vec) const
+{
+	glUniform3fv(glGetUniformLocation(shaderID, name.c_str()), 1, value_ptr(vec));
+}
+
+void Shader::setfloat(const string& name, const float& val) const
+{
+	glUniform1f(glGetUniformLocation(shaderID, name.c_str()), val);
+}
+
+void Shader::setint(const string& name, const int& val) const
+{
+	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), val);
+}
+
 std::string Shader::readFile(const std::string& path)
 {
 	std::ifstream file(path);

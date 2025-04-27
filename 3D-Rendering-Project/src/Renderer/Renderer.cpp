@@ -16,9 +16,9 @@ Renderer::Renderer()
 	tri.Init(vec3(0.0f, 1.0f, 0.0f));
 	tri2.Init(vec3(2.0f, 1.0f, 0.0f));
 	m_Grid.Init(vec3(0.0f, 0.0f, -20.0f), 10, 10);
-	m_Plane.Init(vec3(0.0f, 0.0f, 0.0f), 5.0f, 5.0f);
-	m_Plane.Init(vec3(0.0f, 0.0f, 2.0f), 5.0f, 5.0f);
-	m_Cube.Init(vec3(-2.0f, 0.5f, -2.0f), 0.0f, 0.0f);
+	m_Plane.Init(vec3(0.0f, 0.0f, -10.0f), 5.0f, 5.0f);
+
+	m_Cube.Init(vec3(-2.0f, 0.0f, -2.0f), 0.0f, 0.0f);
 }
 
 void Renderer::Init()
@@ -123,11 +123,9 @@ void Renderer::Update(float deltaTime)
 
 	//tri.Update();
 	tri2.Update(deltaTime);
+	m_Cube.Update();
 
 	//m_Grid.Update(deltaTime);
-
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LINE_SMOOTH);
 }
 
 void Renderer::Render()
@@ -144,14 +142,19 @@ void Renderer::Render()
 	m_baseShader.setmat4("uModel", tri.getModelMat());
 	m_baseShader.setmat4("uView", view);
 	m_baseShader.setmat4("uProjection", proj);
-
 	tri.Render(m_window);
+
+
 	m_baseShader.setmat4("uModel", tri2.getModelMat());
 	tri2.Render(m_window);
 
+	//glUseProgram(0);
+
 	m_Grid.Render(m_window, &m_baseShader);
 	m_Plane.Render(m_window, view, proj);
-	m_Cube.Render(m_window, view, proj);
+
+	//m_baseShader.setmat4("uModel", m_Cube.getModelMat());
+	m_Cube.Render(m_window, view, proj, m_Camera);
 
 	SDL_GL_SwapWindow(m_window);
 }

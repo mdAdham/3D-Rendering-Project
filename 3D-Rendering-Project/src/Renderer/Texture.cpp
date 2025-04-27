@@ -10,7 +10,7 @@ Texture::~Texture()
 
 void Texture::Load(const std::filesystem::path& path)
 {
-	stbi_set_flip_vertically_on_load(0);
+	stbi_set_flip_vertically_on_load(1);
 
 	int width, height, channels;
 	stbi_uc* data = nullptr;
@@ -60,6 +60,12 @@ void Texture::Load(const std::filesystem::path& path)
 
 void Texture::Bind()
 {
+	glBindTexture(GL_TEXTURE_2D, m_RendererId);
+}
+
+void Texture::Bind(unsigned int slot)
+{
+	glActiveTexture(GL_TEXTURE0 + slot);
 	glBindTexture(GL_TEXTURE_2D, m_RendererId);
 }
 

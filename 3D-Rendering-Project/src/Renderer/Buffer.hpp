@@ -2,8 +2,18 @@
 #include <iostream>
 #include <vector>
 #include "../Base.h"
+#include "pch.hpp"
 
 using namespace std;
+using namespace glm;
+
+struct Vertex
+{
+	vec3 aPos;
+	vec3 aColor;
+	vec3 aNormal;
+	vec2 aTexCoord;
+};
 
 enum class ShaderDataType
 {
@@ -107,7 +117,7 @@ class VertexBuffer
 {
 public:
 	VertexBuffer(uint32_t size);
-	VertexBuffer(float* vertices, uint32_t size);
+	VertexBuffer(const void* vertices, uint32_t size);
 	~VertexBuffer();
 
 	virtual void Bind() const;
@@ -119,7 +129,7 @@ public:
 	virtual void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
 
 	static Ref<VertexBuffer> Create(uint32_t size);
-	static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
+	static Ref<VertexBuffer> Create(const void* vertices, uint32_t size);
 private:
 	uint32_t m_RendererID;
 	BufferLayout m_Layout;

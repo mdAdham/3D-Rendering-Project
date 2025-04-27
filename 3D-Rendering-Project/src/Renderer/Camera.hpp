@@ -16,6 +16,8 @@ public:
 
 	void processMouseMovement(float xOffset, float yOffset);
 
+	vec3& getPos() { return position; };
+
 private:
 	vec3 position;
 	vec3 front;

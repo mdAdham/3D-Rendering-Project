@@ -112,7 +112,7 @@ void Square::Render(SDL_Window* window)
 
 void Square::Render(SDL_Window* window, Shader* shader)
 {
-	glUseProgram(shader->getID());
+	shader->use();
 	shader->setmat4("uModel", model);
 
 	glBindVertexArray(VAO);

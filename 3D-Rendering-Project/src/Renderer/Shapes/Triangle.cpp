@@ -73,6 +73,7 @@ void Triangle::Render(SDL_Window* window)
 {
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glBindVertexArray(0);
 }
 
 mat4 Triangle::getModelMat() const

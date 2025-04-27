@@ -8,7 +8,7 @@ VertexBuffer::VertexBuffer(uint32_t size)
 	glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 }
 
-VertexBuffer::VertexBuffer(float* vertices, uint32_t size)
+VertexBuffer::VertexBuffer(const void* vertices, uint32_t size)
 {
 	glCreateBuffers(1, &m_RendererID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -66,7 +66,7 @@ Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
 	return CreateRef<VertexBuffer>(size);
 }
 
-Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
+Ref<VertexBuffer> VertexBuffer::Create(const void* vertices, uint32_t size)
 {
 	return CreateRef<VertexBuffer>(vertices, size);
 }
