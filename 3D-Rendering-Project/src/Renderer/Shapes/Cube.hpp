@@ -15,7 +15,7 @@ public:
 	void Init(const vec3& positon, float length, float bredth);
 
 	void Update();
-	void Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera& cam);
+	void Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera& cam, Shader* shader = nullptr);
 
 	mat4 getModelMat() const { return m_Model; };
 

@@ -211,10 +211,15 @@ void Cube::Update()
 	//m_Model = translate(m_Model, vec3(0.1f, 0.0f, 0.0f));
 }
 
-void Cube::Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera& cam)
+void Cube::Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera& cam, Shader* shader)
 {
+	if (shader)
+		m_shader = *shader;
+
 	m_shader.use();
-	m_shader.setmat4("uModel", m_Model);
+	if (!shader)
+		m_shader.setmat4("uModel", m_Model);
+
 	m_shader.setmat4("uView", view);
 	m_shader.setmat4("uProjection", proj);
 	m_shader.setvec3("lightColor", vec3(0.82f, 0.82f, 0.82f));
@@ -223,10 +228,8 @@ void Cube::Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera
 
 	diffuse.Bind(0);
 	m_shader.setint("material.diffuse", 0);
-//	diffuse.Bind(0);
-//	m_shader.setint("material.diffuse", 0);
-
-	m_shader.setvec3("material.specular", vec3(0.5f, 0.5f, 0.5f));
+	specular.Bind(1);
+	m_shader.setint("material.specular", 1);
 	m_shader.setfloat("material.shininess", 32.0f);
 
 	vec3 lightColor;
@@ -235,7 +238,7 @@ void Cube::Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera
 	lightColor.z = 1.0f;
 
 	vec3 diffuseColor = lightColor * vec3(1.0f);
-	vec3 ambientColor = diffuseColor * vec3(0.2f);
+	vec3 ambientColor = diffuseColor * vec3(0.3f);
 
 	m_shader.setvec3("light.ambient", ambientColor);
 	m_shader.setvec3("light.diffuse", diffuseColor);

@@ -58,7 +58,7 @@ void Plane::Update()
 
 void Plane::Render(SDL_Window* window, const mat4& view, const mat4& proj)
 {
-	tex.Bind();
+	tex.Bind(0);
 	shader.use();
 
 	shader.setmat4("uModel", m_Model);

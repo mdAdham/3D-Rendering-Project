@@ -19,6 +19,15 @@ Renderer::Renderer()
 	m_Plane.Init(vec3(0.0f, 0.0f, -10.0f), 5.0f, 5.0f);
 
 	m_Cube.Init(vec3(-2.0f, 0.0f, -2.0f), 0.0f, 0.0f);
+
+	m_lightShader.Init("assets/shaders/light.vert", "assets/shaders/light.frag");
+
+	vec3 pos(0.0f, -4.0f, 0.0f);
+	for (auto& cube : m_Cubes)
+	{
+		cube.Init(pos, 0, 0);
+		pos += vec3(1.5f, 1.5f, -1.0f);
+	}
 }
 
 void Renderer::Init()
@@ -155,6 +164,18 @@ void Renderer::Render()
 
 	//m_baseShader.setmat4("uModel", m_Cube.getModelMat());
 	m_Cube.Render(m_window, view, proj, m_Camera);
+
+	m_lightShader.use();
+	m_lightShader.setvec3("light.direction", vec3(-0.2, -1.0f, -0.3f));
+	for (uint i = 0; i < 5; i++)
+	{
+		mat4 model(1.0f);
+		model = m_Cubes[i].getModelMat();
+		float angle = 20.f * i;
+		model = rotate(model, radians(angle), vec3(1.0f, 0.3f, 0.5f));
+		m_lightShader.setmat4("uModel", model);
+		m_Cubes[i].Render(m_window, view, proj, m_Camera, &m_lightShader);
+	}
 
 	SDL_GL_SwapWindow(m_window);
 }

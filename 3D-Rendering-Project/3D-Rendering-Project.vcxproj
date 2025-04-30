@@ -153,6 +153,7 @@
     <ClCompile Include="src\Renderer\Shader.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Cube.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Grid.cpp" />
+    <ClCompile Include="src\Renderer\Shapes\Light.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Plane.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Square.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Triangle.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\Renderer\Buffer.hpp" />
     <ClInclude Include="src\Renderer\Camera.hpp" />
     <ClInclude Include="src\Renderer\Shapes\Cube.hpp" />
+    <ClInclude Include="src\Renderer\Shapes\Light.hpp" />
     <ClInclude Include="src\Renderer\Texture.hpp" />
     <ClInclude Include="src\Renderer\VertexArray.hpp" />
     <ClInclude Include="src\Renderer\Mesh.hpp" />
@@ -180,6 +182,10 @@
   <ItemGroup>
     <None Include="assets\shaders\basic.frag" />
     <None Include="assets\shaders\basic.vert" />
+    <None Include="assets\shaders\Cube.frag" />
+    <None Include="assets\shaders\Cube.vert" />
+    <None Include="assets\shaders\light.frag" />
+    <None Include="assets\shaders\light.vert" />
     <None Include="assets\shaders\Texture.frag" />
     <None Include="assets\shaders\Texture.vert" />
   </ItemGroup>
