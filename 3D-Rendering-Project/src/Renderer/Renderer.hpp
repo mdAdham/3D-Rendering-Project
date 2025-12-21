@@ -8,6 +8,9 @@
 #include "Shapes/Grid.hpp"
 #include "Shapes/Plane.hpp"
 #include "Shapes/Cube.hpp"
+#include "Light.hpp"
+
+#include "Scene/Scene.hpp"
 
 class Renderer
 {
@@ -26,6 +29,8 @@ private:
 	SDL_Window* m_window;
 	SDL_GLContext m_glContext;
 
+	Scope<Scene> mainscene;
+
 	Shader m_baseShader, m_lightShader;
 	Camera m_Camera;
 
@@ -37,4 +42,5 @@ private:
 	Grid m_Grid;
 	Plane m_Plane, m_Plane2;
 	Cube m_Cube, m_Cubes[5];
+	Light m_light;
 };

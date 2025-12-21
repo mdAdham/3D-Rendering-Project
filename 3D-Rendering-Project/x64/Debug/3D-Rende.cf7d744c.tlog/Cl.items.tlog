@@ -4,9 +4,12 @@ C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Buffer.cpp;C:\dev\
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Camera.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Camera.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Mesh.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Mesh.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Renderer.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Renderer.obj
+C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Scene\MainScene.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\MainScene.obj
+C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Scene\ShaderTestingScene.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\ShaderTestingScene.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shader.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Shader.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Cube.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Cube.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Grid.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Grid.obj
+C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Light.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Light.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Plane.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Plane.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Square.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Square.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Triangle.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Triangle.obj

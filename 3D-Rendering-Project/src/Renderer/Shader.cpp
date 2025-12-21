@@ -107,3 +107,85 @@ unsigned int Shader::compileShader(unsigned int type, const std::string& source)
 
 	return shader;
 }
+
+GlobalShader::GlobalShader(const std::string& vertexPath, const std::string& fragmentPath)
+	: Shader(vertexPath, fragmentPath)
+{
+	this->m_Dlight = false;
+	this->m_Plight = false;
+	this->m_Slight = false;
+
+	this->setint("HasDirectionLight", m_Dlight);
+	this->setint("HasPointLight", m_Plight);
+	this->setint("HasSpotLight", m_Slight);
+}
+
+GlobalShader::~GlobalShader()
+{
+	
+}
+
+void GlobalShader::SetDirectionalLight(const DirectionalLight& Dlight)
+{
+	this->m_Dlight = true;
+	this->setint("HasDirectionLight", m_Dlight);
+
+	this->setvec3("directionallight.direction", Dlight.direction);
+	this->setvec3("directionallight.ambient", Dlight.ambient);
+	this->setvec3("directionallight.diffuse", Dlight.diffuse);
+	this->setvec3("directionallight.specular", Dlight.specular);
+}
+
+void GlobalShader::SetPointLight(const array<PointLight, 32>& Plight)
+{
+	this->m_Plight = true;
+	this->setint("HasPointLight", m_Plight);
+	this->setint("pointlightsize", (int)Plight.size());
+
+	for (int i = 0; i < Plight.size(); i++)
+	{
+		string prefix("pointlights[");
+		prefix += to_string(i);
+		prefix += "].";
+
+		this->setvec3(prefix + "position", Plight[i].position);
+
+		this->setfloat(prefix + "constant", Plight[i].constant);
+		this->setfloat(prefix + "linear", Plight[i].linear);
+		this->setfloat(prefix + "quadratic", Plight[i].quadratic);
+
+		this->setvec3(prefix + "ambient", Plight[i].ambient);
+		this->setvec3(prefix + "diffuse", Plight[i].diffuse);
+		this->setvec3(prefix + "specular", Plight[i].speclar);
+	}
+}
+
+void GlobalShader::SetSpotLight(const array<SpotLight, 32>& Slight)
+{
+
+	this->m_Slight = true;
+	this->setint("HasSpotLight", m_Slight);
+	this->setint("spotlightsize", (int)Slight.size());
+
+	for (int i = 0; i < Slight.size(); i++)
+	{
+		string prefix("spotlights[");
+		prefix += to_string(i);
+		prefix += "].";
+
+		this->setvec3(prefix + "position", Slight[i].position);
+		this->setvec3(prefix + "direction", Slight[i].direction);
+
+		this->setfloat(prefix + "cutOff", Slight[i].cutOff);
+		this->setfloat(prefix + "outerCutOff", Slight[i].outerCutOff);
+
+		this->setvec3(prefix + "ambient", Slight[i].ambient);
+		this->setvec3(prefix + "diffuse", Slight[i].diffuse);
+		this->setvec3(prefix + "specular", Slight[i].specular);
+
+		this->setfloat(prefix + "constant", Slight[i].constant);
+		this->setfloat(prefix + "linear", Slight[i].linear);
+		this->setfloat(prefix + "quadratic", Slight[i].quadratic);
+
+	}
+}

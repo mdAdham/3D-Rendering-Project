@@ -1,8 +1,6 @@
 #pragma once
 #include "pch.hpp"
-#include "../VertexArray.hpp"
-#include "../Texture.hpp"
-#include "../Shader.hpp"
+#include "../Drawable.hpp"
 #include "../Camera.hpp"
 
 class Cube
@@ -29,4 +27,15 @@ private:
 	Texture normal;
 	Texture specular;
 	Shader m_shader;
+};
+
+class GlobalCube : public Drawable
+{
+public:
+	GlobalCube();
+
+	void Render(SDL_Window* window, const mat4& view, const mat4& proj);
+
+private:
+	Texture diffuse;
 };

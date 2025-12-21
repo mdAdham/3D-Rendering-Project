@@ -7,6 +7,7 @@ C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Renderer.cpp;C:\de
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shader.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Shader.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Cube.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Cube.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Grid.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Grid.obj
+C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Light.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Light.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Plane.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Plane.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Square.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Square.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Triangle.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Release\Triangle.obj

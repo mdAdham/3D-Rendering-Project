@@ -1,6 +1,9 @@
 #include "pch.hpp"
 #include "Renderer.hpp"
 #include <iostream>
+
+#include "Scene/ShaderTestingScene.hpp"
+#include "Scene/MainScene.hpp"
 using namespace std;
 
 #define SCREEN_WIDTH 1920
@@ -12,6 +15,8 @@ Renderer::Renderer()
 {
 	Init();
 
+	mainscene = CreateScope<MainScene>();
+	/*
 	m_baseShader.Init("assets/shaders/basic.vert", "assets/shaders/basic.frag");
 	tri.Init(vec3(0.0f, 1.0f, 0.0f));
 	tri2.Init(vec3(2.0f, 1.0f, 0.0f));
@@ -22,12 +27,15 @@ Renderer::Renderer()
 
 	m_lightShader.Init("assets/shaders/light.vert", "assets/shaders/light.frag");
 
+	m_light.Init(vec3(3.0f, 0.0f, -5.0f), vec3(1.0f, 1.0f, 1.0f));
+
 	vec3 pos(0.0f, -4.0f, 0.0f);
 	for (auto& cube : m_Cubes)
 	{
 		cube.Init(pos, 0, 0);
 		pos += vec3(1.5f, 1.5f, -1.0f);
 	}
+	*/
 }
 
 void Renderer::Init()
@@ -103,7 +111,7 @@ void Renderer::Run()
 
 			if (ev.type == SDL_MOUSEMOTION)
 			{
-				m_Camera.processMouseMovement((float)ev.motion.xrel, (float)-ev.motion.yrel);
+				mainscene->SetCameraUpdate(ev.motion.xrel, -ev.motion.yrel);
 			}			
 		}
 
@@ -116,7 +124,12 @@ void Renderer::Run()
 
 void Renderer::Update(float deltaTime)
 {
+	if (!mainscene->Update(deltaTime))
+		running = false;
+	/*
 	const Uint8* keys = SDL_GetKeyboardState(nullptr);
+	if (keys[SDL_SCANCODE_ESCAPE])
+		this->running = false;
 	if (keys[SDL_SCANCODE_W])
 		m_Camera.processKeyboard(1, deltaTime);
 	if (keys[SDL_SCANCODE_S])
@@ -135,10 +148,13 @@ void Renderer::Update(float deltaTime)
 	m_Cube.Update();
 
 	//m_Grid.Update(deltaTime);
+	*/
 }
 
 void Renderer::Render()
 {
+	mainscene->Render(m_window);
+	/*
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -163,7 +179,6 @@ void Renderer::Render()
 	m_Plane.Render(m_window, view, proj);
 
 	//m_baseShader.setmat4("uModel", m_Cube.getModelMat());
-	m_Cube.Render(m_window, view, proj, m_Camera);
 
 	m_lightShader.use();
 	m_lightShader.setvec3("light.direction", vec3(-0.2, -1.0f, -0.3f));
@@ -177,5 +192,9 @@ void Renderer::Render()
 		m_Cubes[i].Render(m_window, view, proj, m_Camera, &m_lightShader);
 	}
 
+	m_light.Render(m_window, view, proj);
+	m_Cube.Render(m_window, view, proj, m_Camera);
+
 	SDL_GL_SwapWindow(m_window);
+	*/
 }
