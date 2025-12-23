@@ -42,17 +42,17 @@ void Texture::Load(const std::filesystem::path& path)
 			dataFormat = GL_RGB;
 		}
 
-		glGenTextures(1, &m_RendererId);
-		glBindTexture(GL_TEXTURE_2D, m_RendererId);
-		glTexStorage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height);
+		GLCMD(glGenTextures(1, &m_RendererId));
+		GLCMD(glBindTexture(GL_TEXTURE_2D, m_RendererId));
+		GLCMD(glTexStorage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height));
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
 
-		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
+		GLCMD(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data));
 
 		stbi_image_free(data);
 	}

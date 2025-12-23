@@ -18,7 +18,6 @@ public:
 
 private:
 	Shader m_baseShader, m_lightShader;
-	Shader FullShader;
 
 	Triangle tri, tri2;
 	Grid m_Grid;

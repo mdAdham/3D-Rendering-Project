@@ -19,7 +19,7 @@ public:
 	mat4& getModelMat() { return m_Model; };
 
 private:
-	mat4 m_Model;
+	mat4 m_Model = mat4(1.0f);
 	Ref<VertexArray> vao;
 	Ref<VertexBuffer> vbo;
 	Ref<IndexBuffer> ebo;

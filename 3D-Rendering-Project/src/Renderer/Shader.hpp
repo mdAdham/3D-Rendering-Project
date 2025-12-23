@@ -26,7 +26,7 @@ public:
 	void setmat4(const string& name, const mat4& mat) const;
 	void setvec3(const string& name, const vec3& vec) const;
 	void setfloat(const string& name, const float& val) const;
-	void setint(const string& name, const int& val) const;
+	void setint(const string& name, const int val) const;
 
 	unsigned int shaderID;
 private:
@@ -38,6 +38,17 @@ private:
 
 struct Material
 {
+	/*Material(const Material&& other) noexcept
+	{
+		diffuse.m_RendererId = other.diffuse.m_RendererId;
+		diffuse.m_Height = other.diffuse.m_Height;
+		diffuse.m_Width = other.diffuse.m_Width;
+
+		specular.m_RendererId = other.specular.m_RendererId;
+		specular.m_Height = other.specular.m_Height;
+		specular.m_Width = other.specular.m_Width;
+	}*/
+
 	float vdiffuse = 0.f;
 	float vspecular = 0.f;
 

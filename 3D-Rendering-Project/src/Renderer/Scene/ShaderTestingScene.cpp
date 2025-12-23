@@ -33,6 +33,7 @@ void ShaderTestingScene::InitLights()
 
 ShaderTestingScene::ShaderTestingScene()
 {
+
 	this->m_Camera = CreateScope<Camera>(vec3(0.0f, 1.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), -90.f, 0.0f);
 	InitLights();
 
@@ -60,6 +61,7 @@ bool ShaderTestingScene::Update(float deltaTime)
 		m_Camera->processKeyboard(5, deltaTime);
 	if (keys[SDL_SCANCODE_E])
 		m_Camera->processKeyboard(6, deltaTime);
+
 
 	cube.Update(deltaTime);
 

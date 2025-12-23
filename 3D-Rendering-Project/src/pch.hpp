@@ -9,3 +9,9 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <iostream>
+
+#if 0
+#define GLCMD(x) x;if (glGetError() != 0) __debugbreak()
+#else
+#define GLCMD(x) x
+#endif

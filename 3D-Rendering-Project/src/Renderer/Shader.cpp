@@ -73,7 +73,7 @@ void Shader::setfloat(const string& name, const float& val) const
 	glUniform1f(glGetUniformLocation(shaderID, name.c_str()), val);
 }
 
-void Shader::setint(const string& name, const int& val) const
+void Shader::setint(const string& name, const int val) const
 {
 	glUniform1i(glGetUniformLocation(shaderID, name.c_str()), val);
 }
@@ -151,8 +151,9 @@ void GlobalShader::SetMaterial(Material material)
 
 	material.diffuse.Bind(0);
 	this->setint("material.diffuse", 0);
-	material.specular.Bind(1);
-	this->setint("material.specular", 1);
+	//material.specular.Bind(1);
+	//this->setint("material.specular", 1);
+
 	this->setfloat("material.shininess", material.shininess);
 
 

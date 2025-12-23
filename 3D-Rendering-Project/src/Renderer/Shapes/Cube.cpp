@@ -134,7 +134,7 @@ void Cube::Init(const vec3& positon, float length, float bredth)
 	//m_shader.Init("assets/shaders/basic.vert", "assets/shaders/basic.frag");
 	//m_shader.Init("assets/shaders/light.vert", "assets/shaders/light.frag");
 
-	diffuse.Load("assets/textures/diffuse.png");
+	diffuse.Load("assets/textures/global_diffuse.png");
 	normal.Load("assets/textures/normal.png");
 	specular.Load("assets/textures/specular.png");
 }
@@ -162,6 +162,7 @@ void Cube::Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera
 	m_shader->setint("material.diffuse", 0);
 	specular.Bind(1);
 	m_shader->setint("material.specular", 1);
+
 	m_shader->setfloat("material.shininess", 32.0f);
 
 	vec3 lightColor;
@@ -201,18 +202,19 @@ void GlobalCube::Init(const vec3& positon)
 	vao->AddVertexBuffer(vbo);
 	vao->SetIndexBuffer(ebo);
 
-	material.shininess = 32.f;
+	material.shininess = 100.f;
 
-	material.vdiffuse = 1.0f;
-	material.vspecular = 0.5f;
+	material.vdiffuse = 0.9f;
+	material.vspecular = 0.1f;
 
-	//material.diffuse.Load("assets/textures/diffuse.png");
+	material.diffuse.Load("assets/textures/global_diffuse.png");
 	//material.specular.Load("assets/textures/specular.png");
 
 	/*
 	material.diffuse.Load("assets/texture/global_diffuse.png");
 	material.specular.Load("assets/texture/global_diffuse.png");
 	*/
+
 }
 
 void GlobalCube::Update(float dt)
@@ -231,6 +233,17 @@ void GlobalCube::Render(SDL_Window* window, const mat4& view, const mat4& proj, 
 	shader->setvec3("viewPos", camPos);
 
 	shader->SetMaterial(material);
+
+
+	//material.diffuse.Bind(0);
+	//shader->setint("material.diffuse", 0);
+	//material.specular.Bind(1);
+	//shader->setint("material.specular", 1);
+
+
+	//GLint vertexUVID = glGetUniformLocation(shader->getID(), "material.diffuse");
+	//cout << vertexUVID << endl;
+	//cout << glGetError() << endl;
 
 	vao->Bind();
 	uint32_t count = ebo->GetCount() ? ebo->GetCount() : vao->GetIndexBuffer()->GetCount();

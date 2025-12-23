@@ -82,8 +82,11 @@ vec3 CalculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir
 	vec3 reflectDir = reflect(-lightDir, normal);
 
 	//return vec3(0.0f);
+
 	if (HasMaterial)
 	{
+		return vec3(texture(material.diffuse, TexCoord));
+
 		float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
 		vec3 ambient = material.vdiffuse == 0.0f ? light.ambient * vec3(texture(material.diffuse, TexCoord)) : light.ambient * material.vdiffuse;
@@ -210,6 +213,10 @@ void main()
 			result += CalculateSpotLight(spotlights[i], lightDir);
 		}
 	}
-	
+	// FOR VIEWING TEXTURE COORD
+		//result = vec3(TexCoord, 1.0);
+
+	// FOR VIEWING NORMAL
+		//result = norm;
 	FragColor = vec4(result, 1.0);
 }
