@@ -9,7 +9,6 @@ C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Scene\ShaderTestin
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shader.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Shader.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Cube.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Cube.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Grid.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Grid.obj
-C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Light.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Light.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Plane.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Plane.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Square.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Square.obj
 C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Shapes\Triangle.cpp;C:\dev\3D-Rendering-Project\3D-Rendering-Project\x64\Debug\Triangle.obj

@@ -12,6 +12,8 @@ public:
 	void Bind();
 	void Bind(unsigned int slot);
 	void Unbind();
+
+	unsigned int getId() const { return m_RendererId; }
 private:
 	unsigned int m_RendererId = 0;
 	unsigned int m_Width = 0, m_Height = 0;

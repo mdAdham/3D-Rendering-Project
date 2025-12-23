@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 #include "Texture.hpp"
-#include "Light.hpp"
+#include "AllLight.hpp"
 
 
 using namespace std;
@@ -15,7 +15,8 @@ class Shader
 public:
 	Shader() = default;
 	Shader(const std::string& vertexPath, const std::string& fragmentPath);
-	virtual ~Shader();
+	~Shader();
+
 
 	void Init(const std::string& vertexPath, const std::string& fragmentPath);
 
@@ -35,9 +36,7 @@ private:
 	unsigned int compileShader(unsigned int type, const std::string& source);
 };
 
-class Texture;
-
-class Material
+struct Material
 {
 	float vdiffuse = 0.f;
 	float vspecular = 0.f;
@@ -45,7 +44,7 @@ class Material
 	Texture diffuse;
 	Texture specular;
 
-	float shininess;
+	float shininess = 0.f;
 };
 
 // GlobalShader Class Uses "FullShader.frag and FullShader.vert" SHIT!!
@@ -58,13 +57,17 @@ public:
 	/// </summary>
 	/// <param name="vertexPath">Vertex Shader File Path</param>
 	/// <param name="fragmentPath">Fragment Shader File Path</param>
+	GlobalShader() = default;
 	GlobalShader(const std::string& vertexPath, const std::string& fragmentPath);
+
+	void InitGlobalShader(const std::string& vertexPath, const std::string& fragmentPath);
 
 	~GlobalShader();
 
-	void SetDirectionalLight(const DirectionalLight& Dlight);
-	void SetPointLight(const array<PointLight, 32>& Plight);
-	void SetSpotLight(const array<SpotLight, 32>& Slight);
+	void SetMaterial(Material material);
+	void SetDirectionalLight(const DirectionalLight Dlight);
+	void SetPointLight(const std::array<PointLight, 32> Plight);
+	void SetSpotLight(const std::array<SpotLight, 32> Slight);
 
 private:
 	bool m_Dlight = false;

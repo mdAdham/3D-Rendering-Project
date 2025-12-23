@@ -15,7 +15,7 @@ Renderer::Renderer()
 {
 	Init();
 
-	mainscene = CreateScope<MainScene>();
+	mainscene = CreateScope<ShaderTestingScene>();
 	/*
 	m_baseShader.Init("assets/shaders/basic.vert", "assets/shaders/basic.frag");
 	tri.Init(vec3(0.0f, 1.0f, 0.0f));

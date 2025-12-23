@@ -6,7 +6,7 @@
 #include "Renderer/Shapes/Grid.hpp"
 #include "Renderer/Shapes/Plane.hpp"
 #include "Renderer/Shapes/Cube.hpp"
-#include "Renderer/Light.hpp"
+#include "Renderer/AllLight.hpp"
 
 class MainScene : public Scene
 {
@@ -24,5 +24,6 @@ private:
 	Grid m_Grid;
 	Plane m_Plane, m_Plane2;
 	Cube m_Cube, m_Cubes[5];
-	Light m_light;
+
+	float dt = 0;
 };

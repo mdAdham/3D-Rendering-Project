@@ -2,6 +2,7 @@
 
 #include "Scene.hpp"
 #include "../Shapes/Cube.hpp"
+#include "../Shader.hpp"
 
 class ShaderTestingScene : public Scene
 {
@@ -16,4 +17,5 @@ private:
 
 private:
 	GlobalCube cube;
+	GlobalShader shader;
 };

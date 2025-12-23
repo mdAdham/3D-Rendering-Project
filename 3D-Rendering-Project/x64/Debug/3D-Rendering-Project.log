@@ -1,8 +1,2 @@
-﻿  Renderer.cpp
-C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Renderer.cpp(114,48): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-  (compiling source file '/src/Renderer/Renderer.cpp')
-  
-C:\dev\3D-Rendering-Project\3D-Rendering-Project\src\Renderer\Renderer.cpp(114,41): warning C4244: 'argument': conversion from 'Sint32' to 'float', possible loss of data
-  (compiling source file '/src/Renderer/Renderer.cpp')
-  
+﻿  MainScene.cpp
   3D-Rendering-Project.vcxproj -> C:\dev\3D-Rendering-Project\x64\Debug\3D-Rendering-Project.exe

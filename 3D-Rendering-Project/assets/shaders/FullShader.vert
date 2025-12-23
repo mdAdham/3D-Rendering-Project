@@ -17,10 +17,11 @@ out vec2 TexCoord;
 void main()
 {
 	FragPos = vec3(uModel * vec4(aPos, 1.0));
-	//Normal = mat3(transpose(inverse(uModel))) * aNormal;
-	Normal = aNormal;
+	Normal = mat3(transpose(inverse(uModel))) * aNormal; // PLEASE DONT COMMENT IT
+	//Normal = aNormal;
 	Color = aColor;
 	TexCoord = aTexCoord;
 
 	gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
+	//gl_Position = uProjection * uView * vec4(aPos, 1.0); // DONT UN COMMENT IT.  IT WILL NOT WORK. CHATGPT SAID IT
 }

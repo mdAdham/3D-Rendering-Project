@@ -8,7 +8,7 @@
 #include "Shapes/Grid.hpp"
 #include "Shapes/Plane.hpp"
 #include "Shapes/Cube.hpp"
-#include "Light.hpp"
+#include "AllLight.hpp"
 
 #include "Scene/Scene.hpp"
 
@@ -42,5 +42,4 @@ private:
 	Grid m_Grid;
 	Plane m_Plane, m_Plane2;
 	Cube m_Cube, m_Cubes[5];
-	Light m_light;
 };

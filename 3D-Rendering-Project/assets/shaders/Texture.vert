@@ -13,7 +13,7 @@ uniform mat4 uProjection;
 
 void main()
 {
-	gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
 	Color = aColor;
 	TexCoord = aTexCoord;
+	gl_Position = uProjection * uView * uModel * vec4(aPos, 1.0);
 }

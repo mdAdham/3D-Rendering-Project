@@ -60,9 +60,6 @@
     <ClCompile Include="src\Renderer\Shapes\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Renderer\Scene\MainScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -116,9 +113,6 @@
     <ClInclude Include="src\Renderer\Shapes\Cube.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer\Light.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Renderer\Drawable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Renderer\Scene\ShaderTestingScene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\AllLight.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -145,5 +142,8 @@
     <None Include="assets\shaders\FlatColor.frag" />
     <None Include="assets\shaders\FullShader.vert" />
     <None Include="assets\shaders\FullShader.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\TODO.txt" />
   </ItemGroup>
 </Project>

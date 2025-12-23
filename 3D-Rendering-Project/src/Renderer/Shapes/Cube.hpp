@@ -2,6 +2,7 @@
 #include "pch.hpp"
 #include "../Drawable.hpp"
 #include "../Camera.hpp"
+#include "../Shader.hpp"
 
 class Cube
 {
@@ -15,7 +16,7 @@ public:
 	void Update();
 	void Render(SDL_Window* window, const mat4& view, const mat4& proj, Camera& cam, Shader* shader = nullptr);
 
-	mat4 getModelMat() const { return m_Model; };
+	mat4& getModelMat() { return m_Model; };
 
 private:
 	mat4 m_Model;
@@ -26,16 +27,26 @@ private:
 	Texture diffuse;
 	Texture normal;
 	Texture specular;
-	Shader m_shader;
 };
 
-class GlobalCube : public Drawable
+class GlobalCube
 {
 public:
-	GlobalCube();
+	GlobalCube() = default;
 
-	void Render(SDL_Window* window, const mat4& view, const mat4& proj);
+	void Init(const vec3& positon);
+
+	void Update(float dt);
+
+	void Render(SDL_Window* window, const mat4& view, const mat4& proj, glm::vec3& camPos, GlobalShader* shader);
+
+	glm::vec3 getPos() { return glm::vec3(m_Model[3]); }
 
 private:
-	Texture diffuse;
+	mat4 m_Model = mat4(1.f);
+	Ref<VertexArray> vao;
+	Ref<VertexBuffer> vbo;
+	Ref<IndexBuffer> ebo;
+
+	Material material;
 };

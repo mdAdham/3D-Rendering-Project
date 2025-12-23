@@ -1,0 +1,14 @@
+Full shader is not working properly. 
+directional light and point light.
+i doubt the view and proj matrix.
+
+TODO: ASK CHATGPT TO SOLVE IT
+
+Find the solution.
+That is, in the vertex shader
+
+this line
+
+"" Normal = mat3(transpose(inverse(uModel))) * aNormal; ""
+
+is main part.

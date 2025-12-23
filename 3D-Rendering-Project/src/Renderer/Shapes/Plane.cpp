@@ -69,4 +69,5 @@ void Plane::Render(SDL_Window* window, const mat4& view, const mat4& proj)
 	uint32_t count = ebo->GetCount() ? ebo->GetCount() : vao->GetIndexBuffer()->GetCount();
 	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
 	tex.Unbind();
+	vao->Unbind();
 }

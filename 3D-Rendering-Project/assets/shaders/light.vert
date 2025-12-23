@@ -17,8 +17,8 @@ out vec2 TexCoord;
 void main()
 {
 	FragPos = vec3(uModel * vec4(aPos, 1.0));
-	//Normal = mat3(transpose(inverse(uModel))) * aNormal;
-	Normal = aNormal;
+	Normal = mat3(transpose(inverse(uModel))) * aNormal;
+	//Normal = aNormal;
 	Color = aColor;
 	TexCoord = aTexCoord;
 

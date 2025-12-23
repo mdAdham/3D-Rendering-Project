@@ -115,7 +115,24 @@ GlobalShader::GlobalShader(const std::string& vertexPath, const std::string& fra
 	this->m_Plight = false;
 	this->m_Slight = false;
 
-	this->setint("HasDirectionLight", m_Dlight);
+	use();
+
+	this->setint("HasDirectionalLight", m_Dlight);
+	this->setint("HasPointLight", m_Plight);
+	this->setint("HasSpotLight", m_Slight);
+}
+
+void GlobalShader::InitGlobalShader(const std::string& vertexPath, const std::string& fragmentPath)
+{
+	Init(vertexPath, fragmentPath);
+
+	this->m_Dlight = false;
+	this->m_Plight = false;
+	this->m_Slight = false;
+
+	use();
+
+	this->setint("HasDirectionalLight", m_Dlight);
 	this->setint("HasPointLight", m_Plight);
 	this->setint("HasSpotLight", m_Slight);
 }
@@ -125,10 +142,27 @@ GlobalShader::~GlobalShader()
 	
 }
 
-void GlobalShader::SetDirectionalLight(const DirectionalLight& Dlight)
+void GlobalShader::SetMaterial(Material material)
 {
+	use();
+	this->setint("HasMaterial", 1);
+	this->setfloat("material.vdiffuse", material.vdiffuse);
+	this->setfloat("material.vspecular", material.vspecular);
+
+	material.diffuse.Bind(0);
+	this->setint("material.diffuse", 0);
+	material.specular.Bind(1);
+	this->setint("material.specular", 1);
+	this->setfloat("material.shininess", material.shininess);
+
+
+}
+
+void GlobalShader::SetDirectionalLight(const DirectionalLight Dlight)
+{
+	use();
 	this->m_Dlight = true;
-	this->setint("HasDirectionLight", m_Dlight);
+	this->setint("HasDirectionalLight", m_Dlight);
 
 	this->setvec3("directionallight.direction", Dlight.direction);
 	this->setvec3("directionallight.ambient", Dlight.ambient);
@@ -136,17 +170,21 @@ void GlobalShader::SetDirectionalLight(const DirectionalLight& Dlight)
 	this->setvec3("directionallight.specular", Dlight.specular);
 }
 
-void GlobalShader::SetPointLight(const array<PointLight, 32>& Plight)
+void GlobalShader::SetPointLight(const array<PointLight, 32> Plight)
 {
+	use();
 	this->m_Plight = true;
 	this->setint("HasPointLight", m_Plight);
 	this->setint("pointlightsize", (int)Plight.size());
+
+	//cout << sizeof(Plight) / sizeof(PointLight) << endl;
 
 	for (int i = 0; i < Plight.size(); i++)
 	{
 		string prefix("pointlights[");
 		prefix += to_string(i);
 		prefix += "].";
+		//cout << prefix << "linear = " << Plight[i].linear << endl;
 
 		this->setvec3(prefix + "position", Plight[i].position);
 
@@ -160,12 +198,13 @@ void GlobalShader::SetPointLight(const array<PointLight, 32>& Plight)
 	}
 }
 
-void GlobalShader::SetSpotLight(const array<SpotLight, 32>& Slight)
+void GlobalShader::SetSpotLight(const array<SpotLight, 32> Slight)
 {
-
+	use();
 	this->m_Slight = true;
 	this->setint("HasSpotLight", m_Slight);
 	this->setint("spotlightsize", (int)Slight.size());
+
 
 	for (int i = 0; i < Slight.size(); i++)
 	{

@@ -2,7 +2,7 @@
 
 #include <array>
 
-#include "Renderer/Light.hpp"
+#include "Renderer/AllLight.hpp"
 #include "Base.h"
 #include "Renderer/Camera.hpp"
 

@@ -20,7 +20,7 @@ MainScene::MainScene()
 
 	m_lightShader.Init("assets/shaders/light.vert", "assets/shaders/light.frag");
 
-	m_light.Init(vec3(3.0f, 0.0f, -5.0f), vec3(1.0f, 1.0f, 1.0f));
+	
 
 	vec3 pos(0.0f, -4.0f, 0.0f);
 	for (auto& cube : m_Cubes)
@@ -32,6 +32,8 @@ MainScene::MainScene()
 
 bool MainScene::Update(float deltaTime)
 {
+	this->dt = deltaTime;
+
 	const Uint8* keys = SDL_GetKeyboardState(nullptr);
 	if (keys[SDL_SCANCODE_ESCAPE])
 		return false;
@@ -50,6 +52,11 @@ bool MainScene::Update(float deltaTime)
 
 	tri2.Update(deltaTime);
 	m_Cube.Update();
+
+	for (auto& cube : m_Cubes)
+	{
+		cube.Update();
+	}
 
 	return true;
 }
@@ -82,19 +89,18 @@ void MainScene::Render(SDL_Window* m_window)
 	//m_baseShader.setmat4("uModel", m_Cube.getModelMat());
 
 	m_lightShader.use();
-	m_lightShader.setvec3("light.direction", vec3(-0.2, -1.0f, -0.3f));
+	m_lightShader.setvec3("light.position", vec3(0.f, 0.f, 0.f));
+	m_lightShader.setvec3("viewPos", m_Camera->getPos());
 	for (uint i = 0; i < 5; i++)
 	{
-		mat4 model(1.0f);
-		model = m_Cubes[i].getModelMat();
-		float angle = 20.f * i;
+		mat4& model = m_Cubes[i].getModelMat();
+		float angle = 0.09f * i;
 		model = rotate(model, radians(angle), vec3(1.0f, 0.3f, 0.5f));
-		m_lightShader.setmat4("uModel", model);
+		//m_lightShader.setmat4("uModel", model);
 		m_Cubes[i].Render(m_window, view, proj, *m_Camera, &m_lightShader);
 	}
 
-	m_light.Render(m_window, view, proj);
-	m_Cube.Render(m_window, view, proj, *m_Camera);
+	m_Cube.Render(m_window, view, proj, *m_Camera, &m_lightShader);
 
 	SDL_GL_SwapWindow(m_window);
 }

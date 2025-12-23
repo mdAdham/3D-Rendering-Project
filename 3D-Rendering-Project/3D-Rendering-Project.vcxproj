@@ -155,7 +155,6 @@
     <ClCompile Include="src\Renderer\Shader.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Cube.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Grid.cpp" />
-    <ClCompile Include="src\Renderer\Light.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Plane.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Square.cpp" />
     <ClCompile Include="src\Renderer\Shapes\Triangle.cpp" />
@@ -166,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="src\Base.h" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="src\Renderer\AllLight.hpp" />
     <ClInclude Include="src\Renderer\Buffer.hpp" />
     <ClInclude Include="src\Renderer\Camera.hpp" />
     <ClInclude Include="src\Renderer\Drawable.hpp" />
@@ -173,7 +173,6 @@
     <ClInclude Include="src\Renderer\Scene\Scene.hpp" />
     <ClInclude Include="src\Renderer\Scene\ShaderTestingScene.hpp" />
     <ClInclude Include="src\Renderer\Shapes\Cube.hpp" />
-    <ClInclude Include="src\Renderer\Light.hpp" />
     <ClInclude Include="src\Renderer\Texture.hpp" />
     <ClInclude Include="src\Renderer\VertexArray.hpp" />
     <ClInclude Include="src\Renderer\Mesh.hpp" />
@@ -198,6 +197,9 @@
     <None Include="assets\shaders\light.vert" />
     <None Include="assets\shaders\Texture.frag" />
     <None Include="assets\shaders\Texture.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\TODO.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
