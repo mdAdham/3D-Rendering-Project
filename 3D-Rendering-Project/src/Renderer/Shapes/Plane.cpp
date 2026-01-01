@@ -48,7 +48,7 @@ void Plane::Init(const vec3& positon, float length, float bredth)
 	m_Model = rotate(m_Model, radians(90.f), vec3(1.0f, 0.0f, 0.0f));
 	m_Model = scale(m_Model, vec3(length, 0.0f, bredth));
 
-	tex.Load("assets/textures/Texture.jpg");
+	tex.Load("assets/textures/Texture.png");
 	shader.Init("assets/shaders/Texture.vert", "assets/shaders/Texture.frag");
 }
 
@@ -68,6 +68,6 @@ void Plane::Render(SDL_Window* window, const mat4& view, const mat4& proj)
 	vao->Bind();
 	uint32_t count = ebo->GetCount() ? ebo->GetCount() : vao->GetIndexBuffer()->GetCount();
 	glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
-	tex.Unbind();
 	vao->Unbind();
+	tex.Unbind();
 }

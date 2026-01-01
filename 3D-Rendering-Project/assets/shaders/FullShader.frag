@@ -1,4 +1,4 @@
-#version 330 core
+#version 460 core
 out vec4 FragColor;
 
 in vec3 FragPos;
@@ -10,6 +10,7 @@ in vec2 TexCoord;
 #define NO_OF_SPOT_LIGHTS 32
 
 uniform vec3 viewPos;
+uniform sampler2D testdiffuse;
 
 struct Material
 {
@@ -72,7 +73,6 @@ uniform int spotlightsize;
 
 
 
-
 vec3 CalculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir)
 {
 	vec3 lightDir = normalize(-light.direction);
@@ -85,15 +85,27 @@ vec3 CalculateDirectionalLight(DirectionalLight light, vec3 normal, vec3 viewDir
 
 	if (HasMaterial)
 	{
-		return vec3(texture(material.diffuse, TexCoord));
+		//return vec3(texture(material.diffuse, TexCoord));
 
 		float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-		vec3 ambient = material.vdiffuse == 0.0f ? light.ambient * vec3(texture(material.diffuse, TexCoord)) : light.ambient * material.vdiffuse;
+		vec3 ambient;
+		if(material.vdiffuse == 0.0f)
+			ambient = light.ambient * vec3(texture(material.diffuse, TexCoord));
+		else
+			ambient = light.ambient * material.vdiffuse;
 
-		vec3 diffuse = material.vdiffuse == 0.0f ? light.diffuse * diff * vec3(texture(material.diffuse, TexCoord)) : light.diffuse * diff * material.vdiffuse;
+		vec3 diffuse;
+		if(material.vdiffuse == 0.0f)
+			diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoord));
+		else
+			diffuse = light.diffuse * diff * material.vdiffuse;
 
-		vec3 specular = material.vspecular == 0.0f ? light.specular * spec * vec3(texture(material.specular, TexCoord)) : light.specular * spec * material.vspecular;
+		vec3 specular;
+		if(material.vspecular == 0.0f)
+			specular = light.specular * spec * vec3(texture(material.specular, TexCoord));
+		else
+			specular = light.specular * spec * material.vspecular;
 
 		return (ambient + diffuse + specular);
 	}
@@ -136,11 +148,23 @@ vec3 CalculatePointLight(PointLight light, vec3 normal, vec3 FragPos, vec3 viewD
 	{
 		float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-		vec3 ambient = material.vdiffuse == 0.f ? light.ambient * vec3(texture(material.diffuse, TexCoord)) : light.ambient * material.vdiffuse;
+		vec3 ambient;
+		if(material.vdiffuse == 0.f)
+			ambient = light.ambient * vec3(texture(material.diffuse, TexCoord));
+		else
+			ambient = light.ambient * material.vdiffuse;
 
-		vec3 diffuse = material.vdiffuse == 0.f ? light.diffuse * diff * vec3(texture(material.diffuse, TexCoord)) : light.diffuse * diff * material.vdiffuse;
+		vec3 diffuse;
+		if(material.vdiffuse == 0.f)
+			diffuse =  light.diffuse * diff * vec3(texture(material.diffuse, TexCoord));
+		else
+			diffuse = light.diffuse * diff * material.vdiffuse;
 
-		vec3 specular = material.vspecular == 0.f ? light.specular * spec * vec3(texture(material.specular, TexCoord)) : light.specular * spec * material.vspecular;
+		vec3 specular;
+		if(material.vspecular == 0.f)
+			specular = light.specular * spec * vec3(texture(material.specular, TexCoord));
+		else
+			specular = light.specular * spec * material.vspecular;
 
 		//return vec3(distance * 0.1);
 		
@@ -182,6 +206,7 @@ vec3 CalculateSpotLight(SpotLight light, vec3 lightDir)
 	{
 		float epsilon = light.cutOff - light.outerCutOff;
 		float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
+		return intensity * vec3(1);
 	}
 	else
 		return vec3(0);
@@ -191,10 +216,17 @@ vec3 CalculateSpotLight(SpotLight light, vec3 lightDir)
 
 void main()
 {	
+	// Ensures that OpenGL do not delete unused variables
+
+	//if (material.diffuse == material.diffuse) { }
+	//if (material.specular == material.specular) { }
+
+	//Ends
+
 	vec3 norm = normalize(Normal);
 	vec3 viewDir = normalize(viewPos - FragPos);
 
-	vec3 result;
+	vec3 result = vec3(1);
 	if (HasDirectionalLight)
 		result = CalculateDirectionalLight(directionallight, norm, viewDir);
 
@@ -218,5 +250,11 @@ void main()
 
 	// FOR VIEWING NORMAL
 		//result = norm;
+
+	// FOR VIEWING TEXTURE
+		//result = vec3(texture(material.diffuse, TexCoord));
 	FragColor = vec4(result, 1.0);
+
+	//FragColor = vec4(texture(material.diffuse, TexCoord).rgb, 1.0);
+	//FragColor = texture(testdiffuse, TexCoord);
 }

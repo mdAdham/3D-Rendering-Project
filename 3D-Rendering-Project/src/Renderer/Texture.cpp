@@ -30,7 +30,8 @@ void Texture::Load(const std::filesystem::path& path)
 		m_Width = width;
 		m_Height = height;
 
-		GLenum internalFormat = 0, dataFormat = 0;
+		GLenum dataFormat = 0;
+		GLint  internalFormat = 0;
 		if (channels == 4)
 		{
 			internalFormat = GL_RGBA8;
@@ -42,9 +43,14 @@ void Texture::Load(const std::filesystem::path& path)
 			dataFormat = GL_RGB;
 		}
 
+		std::cout << "File Path: " << path << "\n";
+		std::cout << "Number of Channels: " << channels << "\n";
+		std::cout << "Width: " << width << "\n";
+		std::cout << "Height: " << height << "\n";
+
 		GLCMD(glGenTextures(1, &m_RendererId));
 		GLCMD(glBindTexture(GL_TEXTURE_2D, m_RendererId));
-		GLCMD(glTexStorage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height));
+		//GLCMD(glTexStorage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height));
 
 		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
@@ -52,9 +58,14 @@ void Texture::Load(const std::filesystem::path& path)
 		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
 		GLCMD(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
 
+		GLCMD(glPixelStorei(GL_UNPACK_ALIGNMENT, 1));
 		GLCMD(glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data));
 
 		stbi_image_free(data);
+	}
+	else
+	{
+		std::cout << "Failed to Load Texture: " << path << "\n";
 	}
 }
 

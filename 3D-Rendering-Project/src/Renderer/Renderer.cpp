@@ -15,7 +15,7 @@ Renderer::Renderer()
 {
 	Init();
 
-	mainscene = CreateScope<MainScene>();
+	mainscene = CreateScope<ShaderTestingScene>();
 
 }
 

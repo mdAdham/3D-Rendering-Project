@@ -142,7 +142,7 @@ GlobalShader::~GlobalShader()
 	
 }
 
-void GlobalShader::SetMaterial(Material material)
+void GlobalShader::SetMaterial(Material& material)
 {
 	use();
 	this->setint("HasMaterial", 1);
@@ -151,8 +151,8 @@ void GlobalShader::SetMaterial(Material material)
 
 	material.diffuse.Bind(0);
 	this->setint("material.diffuse", 0);
-	//material.specular.Bind(1);
-	//this->setint("material.specular", 1);
+	material.specular.Bind(1);
+	this->setint("material.specular", 1);
 
 	this->setfloat("material.shininess", material.shininess);
 

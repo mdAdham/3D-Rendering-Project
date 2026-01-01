@@ -75,7 +75,7 @@ public:
 
 	~GlobalShader();
 
-	void SetMaterial(Material material);
+	void SetMaterial(Material& material);
 	void SetDirectionalLight(const DirectionalLight Dlight);
 	void SetPointLight(const std::array<PointLight, 32> Plight);
 	void SetSpotLight(const std::array<SpotLight, 32> Slight);

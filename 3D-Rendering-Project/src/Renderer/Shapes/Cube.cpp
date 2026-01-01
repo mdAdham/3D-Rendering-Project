@@ -135,7 +135,7 @@ void Cube::Init(const vec3& positon, float length, float bredth)
 	//m_shader.Init("assets/shaders/light.vert", "assets/shaders/light.frag");
 
 	diffuse.Load("assets/textures/global_diffuse.png");
-	normal.Load("assets/textures/normal.png");
+	//normal.Load("assets/textures/normal.png");
 	specular.Load("assets/textures/specular.png");
 }
 
@@ -202,13 +202,19 @@ void GlobalCube::Init(const vec3& positon)
 	vao->AddVertexBuffer(vbo);
 	vao->SetIndexBuffer(ebo);
 
-	material.shininess = 100.f;
+	material.shininess = 32.f;
 
+#if 0
 	material.vdiffuse = 0.9f;
 	material.vspecular = 0.1f;
+#else
+	material.vdiffuse = 0.0f;
+	material.vspecular = 0.0f;
+#endif
+
 
 	material.diffuse.Load("assets/textures/global_diffuse.png");
-	//material.specular.Load("assets/textures/specular.png");
+	material.specular.Load("assets/textures/specular.png");
 
 	/*
 	material.diffuse.Load("assets/texture/global_diffuse.png");
@@ -222,6 +228,15 @@ void GlobalCube::Update(float dt)
 	m_Model = rotate(m_Model, .45f * dt, vec3(0.f, 4.f, 0.f));
 }
 
+static void PrintUniformPos(const std::vector<string>& vecs, GlobalShader* shader)
+{
+	for (auto& st : vecs)
+	{
+		GLint vertexUVID = glGetUniformLocation(shader->getID(), st.c_str());
+		cout << st << " : " << vertexUVID << endl;
+	}
+}
+
 void GlobalCube::Render(SDL_Window* window, const mat4& view, const mat4& proj, glm::vec3& camPos, GlobalShader* shader)
 {
 	shader->use();
@@ -232,18 +247,44 @@ void GlobalCube::Render(SDL_Window* window, const mat4& view, const mat4& proj, 
 	shader->setmat4("uProjection", proj);
 	shader->setvec3("viewPos", camPos);
 
+	shader->use();
 	shader->SetMaterial(material);
 
+	//shader->setint("testdiffuse", 0);
+	//material.diffuse.Bind(0);
 
 	//material.diffuse.Bind(0);
 	//shader->setint("material.diffuse", 0);
 	//material.specular.Bind(1);
 	//shader->setint("material.specular", 1);
+#if 0
 
 
-	//GLint vertexUVID = glGetUniformLocation(shader->getID(), "material.diffuse");
-	//cout << vertexUVID << endl;
+	cout << endl << endl;
+
+	std::vector<string> vecs;
+
+	vecs.push_back("viewPos");
+	vecs.push_back("material.vdiffuse");
+	vecs.push_back("material.vspecular");
+	vecs.push_back("material.diffuse");
+	vecs.push_back("material.specular");
+	vecs.push_back("material.shininess");
+	vecs.push_back("HasMaterial");
+	vecs.push_back("directionallight.direction");
+	vecs.push_back("directionallight.ambient");
+	vecs.push_back("directionallight.diffuse");
+	vecs.push_back("directionallight.specular");
+	vecs.push_back("HasDirectionalLight");
+	vecs.push_back("pointlightsize");
+	vecs.push_back("spotlightsize");
+	vecs.push_back("testdiffuse");
+
+	PrintUniformPos(vecs, shader);
+	
 	//cout << glGetError() << endl;
+	//exit(0);
+#endif //  
 
 	vao->Bind();
 	uint32_t count = ebo->GetCount() ? ebo->GetCount() : vao->GetIndexBuffer()->GetCount();
