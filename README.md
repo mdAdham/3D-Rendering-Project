@@ -29,10 +29,9 @@ All examples are written in **modern OpenGL (3.3+)** with **C++**.
 3D-Rendering-Project/
 │
 ├── src/              # C++ source files
-├── shaders/          # GLSL shader programs
-├── textures/         # Texture assets
-├── models/           # (Optional) 3D models
-├── include/          # Headers and libraries
+├── assets/shaders/          # GLSL shader programs
+├── assets/textures/         # Texture assets
+├── models/           # (Optional) 3D models Comming Soon
 └── README.md         # This file!
 ```
 
@@ -63,7 +62,7 @@ Make sure you’ve installed the following:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/3D-Rendering-Project.git
+git clone https://github.com/mdadham/3D-Rendering-Project.git
 
 # Navigate to the folder
 cd 3D-Rendering-Project
